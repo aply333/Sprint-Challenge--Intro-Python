@@ -7,6 +7,8 @@ class City:
     self.name = name
     self.lat = lat
     self.lon = lon
+  def __repr__(self):
+    return f"{self.name} , {self.lat}, {self.lon}"
 
 
 # We have a collection of US cities with population over 750,000 stored in the
@@ -79,13 +81,16 @@ for c in cities:
 
 # TODO Get latitude and longitude values from the user
 
+print("\n|- Stretch -|\n")
+
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
-  within = [f"{c.name}:({c.lat},{c.lon})" for c in cities if lat1 > c.lat > lat2 and lon1 > c.lon > lon2]
+  within = [City(c.name,c.lat,c.lon) for c in cities if lat1 < c.lat < lat2 and lon1 < c.lon < lon2]
   
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
 
   return within
 
-print(cityreader_stretch(44,-101, 31, -121, cities))
+print(cityreader_stretch(32, -120, 45, -100, cities))
+print(len(cityreader_stretch(32, -120, 45, -100, cities)))
